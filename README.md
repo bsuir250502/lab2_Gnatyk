@@ -1,18 +1,18 @@
-lab2_Gnatyk
-===========
-¬ариант є3
-¬ структурах хранитс€  информаци€ о студентах. ќдним из 
-элементов структуры €вл€етс€ объединение, в котором, в зависимости от 
-места жительства (иногородний студент или нет), информаци€ задаетс€ в 
-виде: 
+lab2+AF8-Gnatyk
++AD0APQA9AD0APQA9AD0APQA9AD0APQ-
++BBIEMARABDgEMAQ9BEI- +IRY-3
++BBI- +BEEEQgRABEMEOgRCBEMEQAQwBEU- +BEUEQAQwBD0EOARCBEEETw-  +BDgEPQREBD4EQAQ8BDAERgQ4BE8- +BD4- +BEEEQgRDBDQENQQ9BEIEMARF-. +BB4ENAQ9BDgEPA- +BDgENw- 
++BE0EOwQ1BDwENQQ9BEIEPgQy- +BEEEQgRABEMEOgRCBEMEQARL- +BE8EMgQ7BE8ENQRCBEEETw- +BD4EMQRKBDUENAQ4BD0ENQQ9BDgENQ-, +BDI- +BDoEPgRCBD4EQAQ+BDw-, +BDI- +BDcEMAQyBDgEQQQ4BDwEPgRBBEIEOA- +BD4EQg- 
++BDwENQRBBEIEMA- +BDYEOARCBDUEOwRMBEEEQgQyBDA- (+BDgEPQQ+BDMEPgRABD4ENAQ9BDgEOQ- +BEEEQgRDBDQENQQ9BEI- +BDgEOwQ4- +BD0ENQRC-), +BDgEPQREBD4EQAQ8BDAERgQ4BE8- +BDcEMAQ0BDAENQRCBEEETw- +BDI- 
++BDIEOAQ0BDU-: 
  
-а) ћинск, ул. Е, д. Е, кв. Е; 
++BDA-) +BBwEOAQ9BEEEOg-, +BEMEOw-. +ICY-, +BDQ-. +ICY-, +BDoEMg-. +ICYAOw- 
  
-б) область, город Е, ул. Е, д. Е, кв. Е; 
++BDE-) +BD4EMQQ7BDAEQQRCBEw-, +BDMEPgRABD4ENA- +ICY-, +BEMEOw-. +ICY-, +BDQ-. +ICY-, +BDoEMg-. +ICYAOw- 
  
-в) область Е, район Е, город Е, ул. Е, д. Е, кв. Е; 
++BDI-) +BD4EMQQ7BDAEQQRCBEw- +ICY-, +BEAEMAQ5BD4EPQ- +ICY-, +BDMEPgRABD4ENA- +ICY-, +BEMEOw-. +ICY-, +BDQ-. +ICY-, +BDoEMg-. +ICYAOw- 
  
-г) область Е, район Е, деревн€ Е, дом Е . 
++BDM-) +BD4EMQQ7BDAEQQRCBEw- +ICY-, +BEAEMAQ5BD4EPQ- +ICY-, +BDQENQRABDUEMgQ9BE8- +ICY-, +BDQEPgQ8- +ICY- . 
  
-ѕо запросу из командной строки, в зависимости от вида информации, 
-вывести данные о тех или иных студентах
++BB8EPg- +BDcEMAQ/BEAEPgRBBEM- +BDgENw- +BDoEPgQ8BDAEPQQ0BD0EPgQ5- +BEEEQgRABD4EOgQ4-, +BDI- +BDcEMAQyBDgEQQQ4BDwEPgRBBEIEOA- +BD4EQg- +BDIEOAQ0BDA- +BDgEPQREBD4EQAQ8BDAERgQ4BDg-, 
++BDIESwQyBDUEQQRCBDg- +BDQEMAQ9BD0ESwQ1- +BD4- +BEIENQRF- +BDgEOwQ4- +BDgEPQRLBEU- +BEEEQgRDBDQENQQ9BEIEMARF-

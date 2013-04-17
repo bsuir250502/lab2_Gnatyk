@@ -1,30 +1,24 @@
-#include <stdlib.h>
+#ifdef __cplusplus
+extern "C" {
+#endif
 #include <stdio.h>
-#include <string.h> 
-#include < iostream>
-#include < windows.h>
-#include < fstream>
+#include <stdlib.h>
+#include <string.h>
+
 
 #define koll 256
 #define input_buf_size 1000
 #define SIZE( x ) (sizeof( x )/sizeof( *x ))
 # define number_of_students 4
 
-char *gets_s(char *s, size_t buf_size)
-{
-    char *result;
-    result = fgets(s, buf_size, stdin);
-    result[strlen(s) - 1] = '\0';
-    return result;
-}
 
-struct one{
+typedef  struct one{
 char street[koll];
 char house_number[koll];
 char flat_number[koll];
 }addr_one;
 
-struct two{		
+typedef  struct two{		
 char district[koll];
 char sity[koll];
 char street[koll];
@@ -32,7 +26,7 @@ char house_number[koll];
 char flat_number[koll];
 }addr_two;
 
-struct three{
+typedef  struct three{
 char region[koll];
 char district[koll];
 char village_name[koll];
@@ -40,7 +34,7 @@ char street[koll];
 char flat_number[koll];
 }addr_three;
 
-struct four{
+typedef struct four{
 char region[koll];
 char district[koll];
 char sity[koll];
@@ -49,7 +43,7 @@ char house_number[koll];
 char flat_number[koll]; }
 addr_four;
 
-struct students_info{
+typedef struct students_info{
 char inform[koll];
 char type_addr;
 union choise_1{
@@ -68,6 +62,15 @@ void clear_screen()
     system("clear");
 #endif
 }
+
+char *gets_s(char *s, size_t buf_size)
+{
+    char *result;
+    result = fgets(s, buf_size, stdin);
+    result[strlen(s) - 1] = '\0';
+    return result;
+}
+
 students_info  enter_students_one( students_info student_list)
 {
     char input_buffer[input_buf_size];
@@ -81,7 +84,7 @@ students_info  enter_students_one( students_info student_list)
      gets_s(student_list.addr_type.minsk.house_number,house_number_size);
      printf("enter the the apartment number :");
      gets_s(student_list.addr_type.minsk.flat_number,flat_number_size);
-     return students_list;
+     return student_list;
 }
 
 students_info  enter_students_two( students_info students_list)
@@ -154,34 +157,34 @@ students_info  enter_students_four( students_info students_list)
     return students_list;
 }
 
-students_info  vibor_adresa(students_info students_list)
+students_info  vibor_adres(students_info students_list)
 {
 
     switch(students_list.type_addr){   
     case '1':
-	students_list = enter_students_one(students_list);
-	break;
-	case '2':
-	students_list = enter_students_two(students_list);
-	break;
-	case '3':
-	students_list = enter_students_three(students_list);
-	break;
-	case '4':
-	students_list = enter_students_four(students_list);
-	break;
-	}
+    students_list = enter_students_one(students_list);
+    break;
+    case '2':
+    students_list = enter_students_two(students_list);
+    break;
+    case '3':
+    students_list = enter_students_three(students_list);
+    break;
+    case '4':
+    students_list = enter_students_four(students_list);
+    break;
+    }
     return students_list;
 }
-students_info  vibor_adresa_chek(students_info students_list )
+students_info  vibor_adres_chek(students_info students_list )
 {
     char input_buffer[input_buf_size];
     int type_addr_size=SIZE(&students_list.type_addr);
     while(1){
-		printf("Enter adress of %sSelect the type of address\n1- Minsk\n2- oblsnoy gorod\n3- Neoblosnoy gorod\n4- derevnia\n",students_list.inform);
+        printf("Enter adress of %sSelect the type of address\n1- Minsk\n2- oblsnoy gorod\n3- Neoblosnoy gorod\n4- derevnia\n",students_list.inform);
         gets_s(&students_list.type_addr,type_addr_size);break;}
-	    students_list = vibor_adresa(students_list );
-	return students_list;
+        students_list = vibor_adres(students_list );
+    return students_list;
 }
 
 void enter_inform_students(students_info *students_list)
@@ -190,22 +193,22 @@ void enter_inform_students(students_info *students_list)
     int inform_size=SIZE(students_list[i].inform);
     for(i=0;i<number_of_students;i++){
         printf("Enter surname of %d student\n",i+1);
-	    gets_s(students_list[i].inform,inform_size);
-	    students_list[i] = vibor_adresa_chek(students_list[i]);
-	    system("clear");}
+        gets_s(students_list[i].inform,inform_size);
+        students_list[i] = vibor_adres_chek(students_list[i]);
+        system("clear");}
 }
 
 void puts_minsk(students_info* students_list)
 {
-	int i = 0;
+    int i = 0;
     for (i = 0; i < number_of_students; i++) {
         if(students_list[i].type_addr == '1'){
-	    printf("Student %s from %s, street %s, house %d, flat %d\n",
-	    students_list[i].inform,
-	    students_list[i].addr_type.minsk.street,
+        printf("Student %s from %s, street %s, house %d, flat %d\n",
+        students_list[i].inform,
+        students_list[i].addr_type.minsk.street,
         students_list[i].addr_type.minsk.house_number,
-	    students_list[i].addr_type.minsk.flat_number);}
-	}
+        students_list[i].addr_type.minsk.flat_number);}
+    }
 }
 
 void puts_obls_gorod(students_info* students_list)
@@ -214,13 +217,13 @@ void puts_obls_gorod(students_info* students_list)
     for (i = 0; i < number_of_students; i++) {
         if(students_list[i].type_addr == '2'){
          printf("Student %s from %s, street %s, house %d, flat %d\n",
-	     students_list[i].inform,
-	     students_list[i].addr_type.oblsnoy_gorod.district,
-	     students_list[i].addr_type.oblsnoy_gorod.sity,
-	     students_list[i].addr_type.oblsnoy_gorod.street,
-	     students_list[i].addr_type.oblsnoy_gorod.house_number,
-	     students_list[i].addr_type.oblsnoy_gorod.flat_number);}
-	}
+         students_list[i].inform,
+         students_list[i].addr_type.oblsnoy_gorod.district,
+         students_list[i].addr_type.oblsnoy_gorod.sity,
+         students_list[i].addr_type.oblsnoy_gorod.street,
+         students_list[i].addr_type.oblsnoy_gorod.house_number,
+         students_list[i].addr_type.oblsnoy_gorod.flat_number);}
+    }
 }
 
 void puts_neobl_gorod(students_info* students_list)
@@ -229,14 +232,14 @@ void puts_neobl_gorod(students_info* students_list)
      for (i = 0; i < number_of_students; i++) {
          if(students_list[i].type_addr == '3'){
          printf("Student %s from %s, street %s, house %d, flat %d\n",
-	     students_list[i].inform,
-	     students_list[i].addr_type.neoblosnoy_gorod.region,
-	     students_list[i].addr_type.neoblosnoy_gorod.district,
-	     students_list[i].addr_type.neoblosnoy_gorod.sity,
-	     students_list[i].addr_type.neoblosnoy_gorod.street,
-	     students_list[i].addr_type.neoblosnoy_gorod.house_number,
-	     students_list[i].addr_type.neoblosnoy_gorod.flat_number);}
-	}
+         students_list[i].inform,
+         students_list[i].addr_type.neoblosnoy_gorod.region,
+         students_list[i].addr_type.neoblosnoy_gorod.district,
+         students_list[i].addr_type.neoblosnoy_gorod.sity,
+         students_list[i].addr_type.neoblosnoy_gorod.street,
+         students_list[i].addr_type.neoblosnoy_gorod.house_number,
+         students_list[i].addr_type.neoblosnoy_gorod.flat_number);}
+    }
 }
 
 void puts_derev(students_info* students_list)
@@ -246,10 +249,10 @@ void puts_derev(students_info* students_list)
          if(students_list[i].type_addr == '4'){
          printf("Student %s from %s, street %s, house %d, flat %d\n",
          students_list[i].inform,
-	     students_list[i].addr_type.derevnai.district,
-	     students_list[i].addr_type.derevnai.village_name,
-	     students_list[i].addr_type.derevnai.flat_number);}
-	}
+         students_list[i].addr_type.derevnai.district,
+         students_list[i].addr_type.derevnai.village_name,
+         students_list[i].addr_type.derevnai.flat_number);}
+    }
 }
 
 void puts_all_stud(students_info* students_list)
@@ -271,7 +274,7 @@ void checkHelp(void)
          "-c list of students from the cities\n"
          "-t list of students from towns\n"
          "-v list of students from villages\n"
-		 "-l list of all students\n"
+         "-l list of all students\n"
          "===============================================================================\n");
     exit(0);
 }
@@ -279,12 +282,12 @@ void checkHelp(void)
 int main(int argc, char *argv[])
 {
     struct students_info students_list[number_of_students];
-    if (argc == 1) {
+    if (argc > 1) {
         if (!strcmp(argv[1], "-h"))
             checkHelp();
     }
     enter_inform_students(students_list);
-    if (argc == 1) {
+    if (argc > 1) {
         if (!strcmp(argv[1], "-m"))
             puts_minsk(students_list);
         if (!strcmp(argv[1], "-c"))
@@ -293,7 +296,10 @@ int main(int argc, char *argv[])
              puts_neobl_gorod(students_list);
         if (!strcmp(argv[1], "-v"))
              puts_derev(students_list);
-	    if (!strcmp(argv[1], "-l"))
-	         puts_all_stud(students_list);}
+        if (!strcmp(argv[1], "-l"))
+             puts_all_stud(students_list);}
     return 0;
 }
+#ifdef __cplusplus
+}
+#endif
