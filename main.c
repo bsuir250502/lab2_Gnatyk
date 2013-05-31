@@ -4,119 +4,112 @@ extern "C" {
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define koll 256
+#define MAX 90
 #define input_buf_size 1000
 #define SIZE( x ) (sizeof( x )/sizeof( *x ))
 #define number_of_students 4
+#define MAX_STR 60
 
-
-    typedef  struct{
-        char street[koll];
-        char house_number[koll];
-        char flat_number[koll];
-    }one;
-    one addr_one;
-
-    typedef  struct{		
-        char district[koll];
-        char city[koll];
-        char street[koll];
-        char house_number[koll];
-        char flat_number[koll];
-    }two;
-    two addr_two;
-
-    typedef  struct{
-        char region[koll];
-        char district[koll];
-        char village_name[koll];
-        char street[koll];
-        char flat_number[koll];
-    }three;
-    three addr_three;
 
     typedef struct{
-        char region[koll];
-        char district[koll];
-        char city[koll];
-        char street[koll];
-        char house_number[koll];
-        char flat_number[koll];
+        char street[MAX];
+        char house_number[MAX];
+        char flat_number[MAX];
+    }one;
+    typedef struct{    
+        char district[MAX];
+        char city[MAX];
+        char street[MAX];
+        char house_number[MAX];
+        char flat_number[MAX];
+    }two;
+    typedef struct{
+        char region[MAX];
+        char district[MAX];
+        char village_name[MAX];
+        char street[MAX];
+        char flat_number[MAX];
+    }three;
+    typedef struct{
+        char region[MAX];
+        char district[MAX];
+        char city[MAX];
+        char street[MAX];
+        char house_number[MAX];
+        char flat_number[MAX];
     }four;
-    four addr_four;
-
     typedef struct students_info{
-        char inform[koll];
+        char inform[MAX];
         char type_addr;
         union choise_1{
             one minsk;
             two regional_city;
-            three derevnai;
-            four neoblosnoy_gorod; 
+            three village;
+            four not_regional_city;
         }addr_type;
-    }students_info;
-    students_info students_list;
+    };
 
-    students_info  enter_students_one( students_info student_list)
+    void output_string(char *information, char *input_text, int max_number_of_symbols)
     {
-        char input_buffer[input_buf_size];
-        str_input("Street name: ", students_list.addr_type.minsk.street, MAX_STR);
-        str_input("House number: ", students_list.addr_type.minsk.hause_number, MAX_STR)
-        str_input("Apartament number: ", students_list.addr_type.minsk.flat_number, MAX_STR)
-        return student_list;
+        while (1) {
+            printf("%s", information);
+            fgets(input_text, max_number_of_symbols, stdin);
+            if (input_text[0] == '\n' || input_text[0] == ' ') {
+                puts("Invalid input, try again.");
+            }
+            else {
+                input_text[strlen(input_text)-1]='\0';
+                break;
+            }
+        }
     }
 
-    students_info  enter_students_two( students_info students_list)
+    students_info enter_students_one( students_info students_list)
+    {
+        char input_buffer[input_buf_size];
+        output_string("Street name: ", students_list.addr_type.minsk.street, MAX_STR);
+        output_string("House number: ", students_list.addr_type.minsk.house_number, MAX_STR);
+        output_string("Apartament number: ", students_list.addr_type.minsk.flat_number, MAX_STR);
+        return students_list;
+    }
+
+    students_info enter_students_two( students_info students_list)
     {
         char input_buffer[input_buf_size];;
-        str_input("Name of the regional city: ", students_list.addr_type.regional_city.district, MAX_STR);
-        str_input("Name of the city: ", students_list.addr_type.regional_city.city, MAX_STR);
-        str_input("Street name : ", students_list.addr_type.regional_city.street, MAX_STR);
-        str_input("House number : ", students_list.addr_type.regional_city.house_number, MAX_STR);
-        str_input("Apartament number : ", students_list.addr_type.regional_city.flat_number, MAX_STR);
+        output_string("Name of the regional city: ", students_list.addr_type.regional_city.district, MAX_STR);
+        output_string("Name of the city: ", students_list.addr_type.regional_city.city, MAX_STR);
+        output_string("Street name: ", students_list.addr_type.regional_city.street, MAX_STR);
+        output_string("House number: ", students_list.addr_type.regional_city.house_number, MAX_STR);
+        output_string("Apartament number: ", students_list.addr_type.regional_city.flat_number, MAX_STR);
         return students_list;
     }
 
-    students_info  enter_students_three( students_info students_list)
-    {
-        char input_buffer[input_buf_size]; 
-
-        printf("Enter name of the region :");
-        gets_s(students_list.addr_type.derevnai.region,region_size);
-        printf("Enter name of the district:");
-        gets_s(students_list.addr_type.derevnai.district,district_size);
-        printf("Enter name of the village:");
-        gets_s(students_list.addr_type.derevnai.village_name,village_name_size);
-        printf("Enter name of she street :");
-        gets_s(students_list.addr_type.derevnai.street,street_size);
-        printf("Enter the number of house:");
-        gets_s(students_list.addr_type.derevnai.flat_number,flat_number_size);
-        return students_list;
-
-    }
-
-    students_info  enter_students_four( students_info students_list)
+    students_info enter_students_three( students_info students_list)
     {
         char input_buffer[input_buf_size];
-      
-        printf("Enter name of region: ");
-        gets_s(students_list.addr_type.neoblosnoy_gorod.region,region_size);
-        printf("Enter name of the district: ");
-        gets_s(students_list.addr_type.neoblosnoy_gorod.district,district_size);
-        printf("Entre name of the street:");
-        gets_s(students_list.addr_type.neoblosnoy_gorod.sity,sity_size);
-        printf("vvedite nasnvanie ylici: ");
-        gets_s(students_list.addr_type.neoblosnoy_gorod.street,name_street_size);
-        printf("Enter the number of house: ");
-        gets_s(students_list.addr_type.neoblosnoy_gorod.house_number,house_number_size);
-        printf("Enter the number of flat: ");
-        gets_s(students_list.addr_type.neoblosnoy_gorod.flat_number,flat_number_size);
+        output_string("Name of the region: ", students_list.addr_type.village.region, MAX_STR);
+        output_string("Name of the district: ", students_list.addr_type.village.district, MAX_STR);
+        output_string("Name of the village: ", students_list.addr_type.village.village_name, MAX_STR);
+        output_string("Name of the street: ", students_list.addr_type.village.street, MAX_STR);
+        output_string("Number of house: ", students_list.addr_type.village.flat_number, MAX_STR);
         return students_list;
     }
 
-    students_info  vibor_adres(students_info students_list)
+    students_info enter_students_four( students_info students_list)
     {
-        switch(students_list.type_addr){   
+        char input_buffer[input_buf_size];
+        output_string("Name of the region: ", students_list.addr_type.not_regional_city.region, MAX_STR);
+        output_string("Name of the district: ", students_list.addr_type.not_regional_city.district, MAX_STR);
+        output_string("Name of the city: ", students_list.addr_type.not_regional_city.city, MAX_STR);
+        output_string("Name of the stree: ",students_list.addr_type.not_regional_city.street, MAX_STR);
+        output_string("Number of house: ",students_list.addr_type.not_regional_city.house_number, MAX_STR);
+        output_string("Number of flat: ",students_list.addr_type.not_regional_city.flat_number, MAX_STR);
+        return students_list;
+    }
+
+    students_info check_adress(students_info students_list)
+    {
+        switch(students_list.type_addr){
         case '1':
             students_list = enter_students_one(students_list);
             break;
@@ -132,15 +125,15 @@ extern "C" {
         }
         return students_list;
     }
-    students_info  vibor_adres_chek(students_info students_list )
+    students_info adress(students_info students_list )
     {
         char input_buffer[input_buf_size];
         int type_addr_size=SIZE(&students_list.type_addr);
         while(1){
-            printf("Enter adress of %sSelect the type of address\n1- Minsk\n2- oblsnoygorod\n3- Neoblosnoy gorod\n4- derevnia\n",students_list.inform);
+            printf("Enter adress of %s\nSelect the type of address\n1- Minsk\n2- Regional city\n3- Not regional city\n4- Village\n",students_list.inform);
             gets_s(&students_list.type_addr,type_addr_size);break;
         }
-        students_list = vibor_adres(students_list);
+        students_list = check_adress(students_list);
         return students_list;
     }
 
@@ -151,8 +144,7 @@ extern "C" {
         for(i=0;i<number_of_students;i++){
             printf("Enter surname of %d student\n",i+1);
             gets_s(students_list[i].inform,inform_size);
-            students_list[i] = vibor_adres_chek(students_list[i]);
-            system("clear");
+            students_list[i] = adress(students_list[i]);
         }
     }
 
@@ -170,49 +162,49 @@ extern "C" {
         }
     }
 
-    void puts_obls_gorod(students_info* students_list)
+    void puts_regional_city(students_info* students_list)
     {
         int i = 0;
         for (i = 0; i < number_of_students; i++){
             if(students_list[i].type_addr == '2'){
                 printf("Student %s from %s, street %s, house %d, flat %d\n",
                     students_list[i].inform,
-                    students_list[i].addr_type.oblsnoy_gorod.district,
-                    students_list[i].addr_type.oblsnoy_gorod.sity,
-                    students_list[i].addr_type.oblsnoy_gorod.street,
-                    students_list[i].addr_type.oblsnoy_gorod.house_number,
-                    students_list[i].addr_type.oblsnoy_gorod.flat_number);
+                    students_list[i].addr_type.regional_city.district,
+                    students_list[i].addr_type.regional_city.city,
+                    students_list[i].addr_type.regional_city.street,
+                    students_list[i].addr_type.regional_city.house_number,
+                    students_list[i].addr_type.regional_city.flat_number);
             }
         }
     }
 
-    void puts_neobl_gorod(students_info* students_list)
+    void puts_not_regional_city(students_info* students_list)
     {
         int i = 0;
         for (i = 0; i < number_of_students; i++){
             if(students_list[i].type_addr == '3'){
                 printf("Student %s from %s, street %s, house %d, flat %d\n",
                     students_list[i].inform,
-                    students_list[i].addr_type.neoblosnoy_gorod.region,
-                    students_list[i].addr_type.neoblosnoy_gorod.district,
-                    students_list[i].addr_type.neoblosnoy_gorod.sity,
-                    students_list[i].addr_type.neoblosnoy_gorod.street,
-                    students_list[i].addr_type.neoblosnoy_gorod.house_number,
-                    students_list[i].addr_type.neoblosnoy_gorod.flat_number);
+                    students_list[i].addr_type.not_regional_city.region,
+                    students_list[i].addr_type.not_regional_city.district,
+                    students_list[i].addr_type.not_regional_city.city,
+                    students_list[i].addr_type.not_regional_city.street,
+                    students_list[i].addr_type.not_regional_city.house_number,
+                    students_list[i].addr_type.not_regional_city.flat_number);
             }
         }
     }
 
-    void puts_derev(students_info* students_list)
+    void puts_village(students_info* students_list)
     {
         int i = 0;
         for (i = 0; i < number_of_students; i++){
             if(students_list[i].type_addr == '4'){
                 printf("Student %s from %s, street %s, house %d, flat %d\n",
                     students_list[i].inform,
-                    students_list[i].addr_type.derevnai.district,
-                    students_list[i].addr_type.derevnai.village_name,
-                    students_list[i].addr_type.derevnai.flat_number);
+                    students_list[i].addr_type.village.district,
+                    students_list[i].addr_type.village.village_name,
+                    students_list[i].addr_type.village.flat_number);
             }
         }
     }
@@ -225,7 +217,7 @@ extern "C" {
         }
     }
 
-    void checkHelp(void)
+    void check_help(void)
     {
         printf
             ("================================================================================\n"
@@ -238,7 +230,7 @@ extern "C" {
             "-v list of students from villages\n"
             "-l list of all students\n"
             "===============================================================================\n");
-        exit(0);
+        return;
     }
 
     int main(int argc, char *argv[])
@@ -246,7 +238,7 @@ extern "C" {
         struct students_info students_list[number_of_students];
         if (argc > 1){
             if (!strcmp(argv[1], "-h")){
-                checkHelp();
+                check_help();
             }
         }
         enter_inform_students(students_list);
@@ -255,13 +247,13 @@ extern "C" {
                 puts_minsk(students_list);
             }
             if (!strcmp(argv[1], "-c")){
-                puts_obls_gorod(students_list);
+                puts_regional_city(students_list);
             }
             if (!strcmp(argv[1], "-t")){
-                puts_neobl_gorod(students_list);
+                puts_not_regional_city(students_list);
             }
             if (!strcmp(argv[1], "-v")){
-                puts_derev(students_list);
+                puts_village(students_list);
             }
             if (!strcmp(argv[1], "-l")){
                 puts_all_stud(students_list);
