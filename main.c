@@ -66,7 +66,6 @@ extern "C" {
 
     students_info enter_students_one( students_info students_list)
     {
-        char input_buffer[input_buf_size];
         output_string("Street name: ", students_list.addr_type.minsk.street, MAX_STR);
         output_string("House number: ", students_list.addr_type.minsk.house_number, MAX_STR);
         output_string("Apartament number: ", students_list.addr_type.minsk.flat_number, MAX_STR);
@@ -75,8 +74,7 @@ extern "C" {
 
     students_info enter_students_two( students_info students_list)
     {
-        char input_buffer[input_buf_size];;
-        output_string("Name of the regional city: ", students_list.addr_type.regional_city.district, MAX_STR);
+        output_string("Name of the regional : ", students_list.addr_type.regional_city.district, MAX_STR);
         output_string("Name of the city: ", students_list.addr_type.regional_city.city, MAX_STR);
         output_string("Street name: ", students_list.addr_type.regional_city.street, MAX_STR);
         output_string("House number: ", students_list.addr_type.regional_city.house_number, MAX_STR);
@@ -86,7 +84,6 @@ extern "C" {
 
     students_info enter_students_three( students_info students_list)
     {
-        char input_buffer[input_buf_size];
         output_string("Name of the region: ", students_list.addr_type.village.region, MAX_STR);
         output_string("Name of the district: ", students_list.addr_type.village.district, MAX_STR);
         output_string("Name of the village: ", students_list.addr_type.village.village_name, MAX_STR);
@@ -97,7 +94,6 @@ extern "C" {
 
     students_info enter_students_four( students_info students_list)
     {
-        char input_buffer[input_buf_size];
         output_string("Name of the region: ", students_list.addr_type.not_regional_city.region, MAX_STR);
         output_string("Name of the district: ", students_list.addr_type.not_regional_city.district, MAX_STR);
         output_string("Name of the city: ", students_list.addr_type.not_regional_city.city, MAX_STR);
@@ -127,7 +123,6 @@ extern "C" {
     }
     students_info adress(students_info students_list )
     {
-        char input_buffer[input_buf_size];
         int type_addr_size=SIZE(&students_list.type_addr);
         while(1){
             printf("Enter adress of %s\nSelect the type of address\n1- Minsk\n2- Regional city\n3- Not regional city\n4- Village\n",students_list.inform);
@@ -167,7 +162,7 @@ extern "C" {
         int i = 0;
         for (i = 0; i < number_of_students; i++){
             if(students_list[i].type_addr == '2'){
-                printf("Student %s from %s, street %s, house %d, flat %d\n",
+                printf("Student %s from %s, street %s, house %s, flat %s\n",
                     students_list[i].inform,
                     students_list[i].addr_type.regional_city.district,
                     students_list[i].addr_type.regional_city.city,
@@ -183,7 +178,7 @@ extern "C" {
         int i = 0;
         for (i = 0; i < number_of_students; i++){
             if(students_list[i].type_addr == '3'){
-                printf("Student %s from %s, street %s, house %d, flat %d\n",
+                printf("Student %s from %s, street %s, house %s, flat %s\n",
                     students_list[i].inform,
                     students_list[i].addr_type.not_regional_city.region,
                     students_list[i].addr_type.not_regional_city.district,
@@ -200,7 +195,7 @@ extern "C" {
         int i = 0;
         for (i = 0; i < number_of_students; i++){
             if(students_list[i].type_addr == '4'){
-                printf("Student %s from %s, street %s, house %d, flat %d\n",
+                printf("Student %s from %s, street %s, house %s, flat %s\n",
                     students_list[i].inform,
                     students_list[i].addr_type.village.district,
                     students_list[i].addr_type.village.village_name,
@@ -259,7 +254,9 @@ extern "C" {
                 puts_all_stud(students_list);
             }
         }
+        getchar(); 
         return 0;
+       
     }
 
 #ifdef __cplusplus
