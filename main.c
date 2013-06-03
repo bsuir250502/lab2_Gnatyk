@@ -137,7 +137,7 @@ extern "C" {
         int i;
         int inform_size=SIZE(students_list[i].inform);
         for(i=0;i<number_of_students;i++){
-            printf("Enter surname of %d student\n",i+1);
+            printf("Enter surname of %s student\n",i+1);
             gets_s(students_list[i].inform,inform_size);
             students_list[i] = adress(students_list[i]);
         }
@@ -148,7 +148,7 @@ extern "C" {
         int i = 0;
         for (i = 0; i < number_of_students; i++){
             if(students_list[i].type_addr == '1'){
-                printf("Student %s from %s, street %s, house %d, flat %d\n",
+                printf("Student %s from %s, street %s, house %s, flat %s\n",
                     students_list[i].inform,
                     students_list[i].addr_type.minsk.street,
                     students_list[i].addr_type.minsk.house_number,
